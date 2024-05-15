@@ -51,6 +51,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
 
 # Download files from Google Cloud Storage
 RUN gsutil -q -m cp -r gs://mt3/checkpoints .
+RUN gsutil -q -m cp gs://magentadata/soundfonts/SGM-v2.01-Sal-Guit-Bass-V1.3.sf2 .
 
 # Sync time
 RUN apt-get update && apt-get install -y tzdata \
