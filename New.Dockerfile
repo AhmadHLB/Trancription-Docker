@@ -11,7 +11,6 @@ COPY midi_program_mapping.py ${FUNCTION_DIR}
 COPY model.py ${FUNCTION_DIR}
 COPY requirements.txt ${FUNCTION_DIR}
 COPY runner.py ${FUNCTION_DIR}
-COPY SGM-v2.01-Sal-Guit-Bass-V1.3.sf2 ${FUNCTION_DIR}
 
 
 # install pip requirements to function_dir 
@@ -30,6 +29,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.
     rm -rf /var/lib/apt/lists/*
 # Download files from Google Cloud Storage
 RUN gsutil -m cp -r gs://mt3/checkpoints ${FUNCTION_DIR}
+RUN gsutil -q -m cp gs://magentadata/soundfonts/SGM-v2.01-Sal-Guit-Bass-V1.3.sf2 .
 
 # create new image 
 FROM python:3.10-slim AS final
